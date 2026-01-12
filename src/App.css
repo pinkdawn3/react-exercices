@@ -1,36 +1,22 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.component {
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  margin-top: 5%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.header {
+  position: static;
+  top: 0;
+  width: 100%;
+  background-color: #1f1f1f;
+  text-align: center;
+  padding: 1rem 0;
 }
 
 .card {
@@ -46,7 +32,6 @@
   height: 100vh;
   margin: 0vw;
   position: relative;
-  /* position:relative for .prevBtn and .nextBtn position:absolute; */
 }
 
 .form-box label {
@@ -95,4 +80,17 @@ textarea {
 
 .submit-button:focus {
   outline: none;
+}
+
+.count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
+}
+
+.count-limit {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
+  color: red;
 }

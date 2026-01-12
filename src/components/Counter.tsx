@@ -8,7 +8,7 @@ function Counter() {
   const decrement = () => setCount((c) => Math.max(0, c - 1));
 
   return (
-    <>
+    <div className="component">
       <h1>Counter</h1>
       <div className="card">
         <button
@@ -27,7 +27,7 @@ function Counter() {
 
         {count >= 10 && <p>El número es mayor o igual que 10</p>}
       </div>
-    </>
+    </div>
   );
 }
 

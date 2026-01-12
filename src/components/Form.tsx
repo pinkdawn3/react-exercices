@@ -40,35 +40,37 @@ function Form() {
   };
 
   return (
-    <form className="form-box" onSubmit={handleSubmit}>
-      <label htmlFor="email">Email:</label>
-      <input
-        id="email"
-        type="email"
-        required
-        autoComplete="off"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-      />
+    <div className="component">
+      <form className="form-box" onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          required
+          autoComplete="off"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
 
-      <label htmlFor="password">Password:</label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        required
-        autoComplete="off"
-        value={formData.password}
-        onChange={handleChange}
-      />
+        <label htmlFor="password">Password:</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          required
+          autoComplete="off"
+          value={formData.password}
+          onChange={handleChange}
+        />
 
-      <button className="submit-button" type="submit">
-        Submit
-      </button>
+        <button className="submit-button" type="submit">
+          Submit
+        </button>
 
-      {hasSubmitted && errorMsg && <p>{errorMsg}</p>}
-    </form>
+        {hasSubmitted && errorMsg && <p>{errorMsg}</p>}
+      </form>
+    </div>
   );
 }
 
