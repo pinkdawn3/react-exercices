@@ -2,26 +2,21 @@ import { useState } from "react";
 import "../App.css";
 
 function Toggle() {
-  const [isRed, setIsRed] = useState(false);
-  const [labelColour, setLabelColour] = useState("white");
+  const [isOn, setIsOn] = useState(false);
 
-  const toggleColor = () => {
-    setIsRed(!isRed);
-
-    if (isRed === true) {
-      setLabelColour("green");
-    } else {
-      setLabelColour("red");
-    }
+  const toggle = () => {
+    setIsOn((prev) => !prev);
   };
+
+  const labelColor = isOn ? "green" : "red";
 
   return (
     <>
-      <button onClick={toggleColor} aria-label="Change colour">
-        Change colour
+      <button onClick={toggle} aria-label="Toggle state">
+        Toggle
       </button>
 
-      <p className={`${labelColour}-label`}>I'm {labelColour}</p>
+      <p className={`${labelColor}-label`}>I'm {labelColor}</p>
     </>
   );
 }

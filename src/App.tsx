@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Counter from "./components/Counter";
 import Form from "./components/Form";
@@ -8,9 +8,9 @@ function App() {
   return (
     <BrowserRouter>
       <nav>
-        <Link to="/counter">Counter </Link>
-        <Link to="/form">Form </Link>
-        <Link to="/toggle">Toggle </Link>
+        <NavLink to="/counter">Counter </NavLink>
+        <NavLink to="/form">Form </NavLink>
+        <NavLink to="/toggle">Toggle </NavLink>
       </nav>
 
       <Routes>
