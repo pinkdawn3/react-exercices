@@ -1,8 +1,19 @@
 import { useState } from "react";
+import "../App.css";
 
 function Toggle() {
   const [isRed, setIsRed] = useState(false);
-  const toggleColor = () => {};
+  const [labelColour, setLabelColour] = useState("white");
+
+  const toggleColor = () => {
+    setIsRed(!isRed);
+
+    if (isRed === true) {
+      setLabelColour("green");
+    } else {
+      setLabelColour("red");
+    }
+  };
 
   return (
     <>
@@ -10,7 +21,7 @@ function Toggle() {
         Change colour
       </button>
 
-      <p color="red">I'm one colour</p>
+      <p className={`${labelColour}-label`}>I'm {labelColour}</p>
     </>
   );
 }

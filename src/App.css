@@ -66,3 +66,11 @@ textarea {
   border-radius: 5px;
   font-size: 20px;
 }
+
+.green-label {
+  color: green;
+}
+
+.red-label {
+  color: red;
+}
