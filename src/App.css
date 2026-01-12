@@ -74,3 +74,25 @@ textarea {
 .red-label {
   color: red;
 }
+
+.submit-button {
+  border-radius: 20px;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 2vh 0 0 0;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.submit-button:active {
+  transform: scale(0.95);
+}
+
+.submit-button:focus {
+  outline: none;
+}

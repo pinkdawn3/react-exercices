@@ -1,54 +1,66 @@
 import { useState } from "react";
+import "../App.css";
 
 function Form() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    address: "",
-    // ... potentially many more individual properties
+    password: "",
   });
+
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleSubmit = () => {
+    setErrorMsg("");
+    let returnValue = true;
+    if (!formData.email.includes("@")) {
+      setErrorMsg("The email format is not correct, lacks @.");
+      returnValue = false;
+    }
+
+    if (formData.password.length < 6) {
+      setErrorMsg(
+        (prevState) =>
+          prevState + "Password must contain at least 6 characters."
+      );
+      returnValue = false;
+    }
+
+    if (returnValue === true) {
+      // Login logic
+    }
+
+    return returnValue;
+  };
+
   return (
     <>
       <div className="form-box">
-        <label>First Name:</label>
-        <input
-          type="text"
-          name="firstName"
-          aria-label="lorem ipsum"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-        <label>Last Name:</label>
-        <input
-          type="text"
-          name="lastName"
-          aria-label="lorem ipsum"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
         <label>Email:</label>
         <input
           type="email"
           name="email"
-          aria-label="lorem ipsum"
+          aria-label="Email box"
           value={formData.email}
           onChange={handleChange}
         />
-        <label>Address:</label>
+        <label>Password:</label>
         <input
-          type="text"
-          name="address"
-          aria-label="lorem ipsum"
-          value={formData.address}
+          type="password"
+          name="password"
+          aria-label="Password box"
+          value={formData.password}
           onChange={handleChange}
         />
+        <button className="submit-button" onClick={handleSubmit}>
+          Sign In
+        </button>
+
+        <p>{errorMsg}</p>
       </div>
     </>
   );
