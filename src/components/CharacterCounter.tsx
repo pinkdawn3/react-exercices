@@ -6,18 +6,12 @@ function CharacterCounter() {
   const WARNING_LENGTH = 80;
 
   const [text, setText] = useState("");
-  const [colourClass, setColourClass] = useState("count");
+  const colourClass = text.length >= WARNING_LENGTH ? "count-limit" : "count";
 
   const handleAreaChange = (e) => {
     const value = e.target.value;
 
     console.log(value.length);
-
-    if (value.length < WARNING_LENGTH) {
-      setColourClass("count");
-    } else if (value.length >= WARNING_LENGTH) {
-      setColourClass("count-limit");
-    }
 
     if (value.length <= MAX_LENGTH) {
       setText(value);
