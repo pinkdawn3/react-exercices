@@ -8,61 +8,67 @@ function Form() {
   });
 
   const [errorMsg, setErrorMsg] = useState("");
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = () => {
-    setErrorMsg("");
-    let returnValue = true;
+  const handleSubmit = (e: React.FormEvent) => {
+    console.log(1);
+    let errors = "";
+
     if (!formData.email.includes("@")) {
-      setErrorMsg("The email format is not correct, lacks @.");
-      returnValue = false;
+      console.log("@");
+      errors += "Email must include @. ";
     }
 
     if (formData.password.length < 6) {
-      setErrorMsg(
-        (prevState) =>
-          prevState + "Password must contain at least 6 characters."
-      );
-      returnValue = false;
+      errors += "Password must be at least 6 characters.";
     }
 
-    if (returnValue === true) {
+    setErrorMsg(errors);
+
+    e.preventDefault();
+    setHasSubmitted(true);
+
+    if (!errors) {
       // Login logic
+      console.log("Form submitted", formData);
     }
-
-    return returnValue;
   };
 
   return (
-    <>
-      <div className="form-box">
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          aria-label="Email box"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          aria-label="Password box"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button className="submit-button" onClick={handleSubmit}>
-          Sign In
-        </button>
+    <form className="form-box" onSubmit={handleSubmit}>
+      <label htmlFor="email">Email:</label>
+      <input
+        id="email"
+        type="email"
+        required
+        autoComplete="off"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
 
-        <p>{errorMsg}</p>
-      </div>
-    </>
+      <label htmlFor="password">Password:</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        required
+        autoComplete="off"
+        value={formData.password}
+        onChange={handleChange}
+      />
+
+      <button className="submit-button" type="submit">
+        Submit
+      </button>
+
+      {hasSubmitted && errorMsg && <p>{errorMsg}</p>}
+    </form>
   );
 }
 
