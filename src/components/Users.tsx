@@ -9,12 +9,20 @@ function Users() {
   ];
 
   const [isActive, setIsActive] = useState(false);
+  const [data, setData] = useState(users);
+  const filteredUsers = isActive ? data.filter((user) => user.active) : data;
 
-  const filteredUsers = isActive ? users.filter((user) => user.active) : users;
+  console.log(filteredUsers, filteredUsers.length);
 
   const handleActive = () => {
     setIsActive((prev) => !prev);
   };
+
+  function handleRemove(id: number) {
+    const newList = data.filter((item) => item.id !== id);
+
+    setData(newList);
+  }
 
   return (
     <div className="component">
@@ -34,6 +42,13 @@ function Users() {
         filteredUsers.map((user) => (
           <p className="card" key={user.id}>
             {user.name}
+
+            <button
+              aria-label="delete button"
+              onClick={() => handleRemove(user.id)}
+            >
+              Delete
+            </button>
           </p>
         ))
       )}
