@@ -10,11 +10,7 @@ function Users() {
 
   const [isActive, setIsActive] = useState(false);
 
-  const handleList = () => {
-    return isActive === true
-      ? users.filter((user) => user.active === true)
-      : users;
-  };
+  const filteredUsers = isActive ? users.filter((user) => user.active) : users;
 
   const handleActive = () => {
     setIsActive((prev) => !prev);
@@ -24,14 +20,23 @@ function Users() {
     <div className="component">
       <div>
         <span>Show active users </span>
-        <input type="checkbox" aria-label="checkbox" onClick={handleActive} />
+        <input
+          type="checkbox"
+          aria-label="checkbox"
+          checked={isActive}
+          onChange={handleActive}
+        />
       </div>
 
-      {handleList().map((user) => (
-        <p className="card" key={user.id}>
-          {user.name}
-        </p>
-      ))}
+      {filteredUsers.length === 0 ? (
+        <p>No users found</p>
+      ) : (
+        filteredUsers.map((user) => (
+          <p className="card" key={user.id}>
+            {user.name}
+          </p>
+        ))
+      )}
     </div>
   );
 }
